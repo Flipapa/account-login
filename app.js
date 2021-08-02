@@ -9,7 +9,7 @@ app.set('view engine', 'handlebars')
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-  res.send('This is a TEST!')
+  res.render('login')
 })
 
 app.listen(PORT, () => {
