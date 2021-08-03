@@ -1,17 +1,33 @@
 <div class="container text-center">
   <div class="row align-items-center vh-100">
-    <form action="/login" method="POST" class="col-8 col-md-6 col-lg-4 mx-auto">
+    <form action="/" method="POST" class="needs-validation col-8 col-md-6 col-lg-4 mx-auto" novalidate>
       <div class="login-title mb-4">
         <h2>Account Login</h2>
       </div>
-      <div class="form-group mb-4">
+      <div class="form-group m-0" style="height: 80px;">
         <label class="sr-only" for="email">Email</label>
-        <input type="text" class="form-control form-control-lg" name="email" id="email" placeholder="Email">
+        <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="Email" value="{{email}}" aria-describedby="emailValidation" required>
+        <div id="emailValidation" class="invalid-feedback">
+          請輸入有效信箱！
+        </div>
       </div>
-      <div class="form-group mb-5">
+      <div class="form-group m-0" style="height: 80px;">
         <label class="sr-only" for="password">Password</label>
-        <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Password">
+        <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Password" value="{{password}}" aria-describedby="passwordValidation" required>
+        <div id="passwordValidation" class="invalid-feedback">
+          請輸入密碼！
+        </div>
       </div>
+      {{#if noAccount}}
+        <div class="alert alert-danger" role="alert">
+          查無此帳號！請使用正確的信箱登入
+        </div>
+      {{/if}}
+      {{#if loginUser}}
+        <div class="alert alert-danger" role="alert">
+          密碼錯誤！
+        </div>
+      {{/if}}
       <button type="submit" class="btn btn-primary btn-lg col-4">Sign in</button>
     </form>
   </div>
