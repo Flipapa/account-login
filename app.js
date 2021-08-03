@@ -7,6 +7,7 @@ const app = express()
 
 app.engine('handlebars', ephbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
