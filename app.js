@@ -1,5 +1,6 @@
 const express = require('express')
 const ephbs = require('express-handlebars')
+const users = require('./models/seeds/users.json')
 const PORT = 3000
 
 const app = express()
@@ -14,7 +15,18 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   const { email, password } = req.body
-  res.render('index')
+  const loginUser = users.find(user => user.email === email)
+
+  if (!loginUser) {
+    noAccount = true
+    res.render('login', { email, password, noAccount })
+  } else {
+    if (loginUser.password === password) {
+      res.render('index', { loginUser })
+    } else {
+      res.render('login', { email, password, loginUser})
+    }
+  }
 })
 
 app.listen(PORT, () => {
