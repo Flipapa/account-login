@@ -12,6 +12,11 @@ app.get('/', (req, res) => {
   res.render('login')
 })
 
+app.post('/', (req, res) => {
+  const { email, password } = req.body
+  res.render('index')
+})
+
 app.listen(PORT, () => {
   console.log(`Express is listening on localhost:${PORT}`)
 })
